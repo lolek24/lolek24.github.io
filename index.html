@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomasz Dygas - SAP Developer Portfolio</title>
+    <title>lolek24 - SAP Developer Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -813,4 +813,16 @@
             const panels = document.querySelectorAll('.sap-tab-panel');
             panels.forEach(panel => panel.classList.remove('sap-active'));
             
-            //
+            // Show the selected tab panel
+            document.getElementById(tabName).classList.add('sap-active');
+            
+            // Update tab filter styles
+            const filters = document.querySelectorAll('.sap-tab-filter');
+            filters.forEach(filter => filter.classList.remove('sap-selected'));
+            
+            // Select the clicked tab
+            event.currentTarget.classList.add('sap-selected');
+        }
+    </script>
+</body>
+</html>
