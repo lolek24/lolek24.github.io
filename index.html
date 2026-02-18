@@ -1,800 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomasz Dygas - SAP Developer Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "72", "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.5;
-            color: #32363a;
-            background: #f7f7f7;
-            min-height: 100vh;
-        }
-
-        /* SAP Fiori Shell Bar */
-        .sap-shell-bar {
-            background: #354a5f;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-
-        .sap-logo {
-            color: white;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-right: 2rem;
-        }
-
-        .sap-shell-title {
-            color: white;
-            font-size: 0.9rem;
-            flex: 1;
-        }
-
-        .sap-shell-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .sap-shell-action {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            transition: background-color 0.2s;
-        }
-
-        .sap-shell-action:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* Main Content */
-        .sap-main {
-            margin-top: 44px;
-            padding: 2rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* SAP Fiori Page Header */
-        .sap-page-header {
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            padding: 2rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid #0070f2;
-        }
-
-        .sap-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #0070f2, #14a085);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .sap-page-title {
-            font-size: 2rem;
-            font-weight: 300;
-            color: #32363a;
-            margin-bottom: 0.5rem;
-        }
-
-        .sap-page-subtitle {
-            color: #6a6d70;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .sap-status-indicators {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .sap-status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #f2f3f4;
-            padding: 0.5rem 1rem;
-            border-radius: 1rem;
-            font-size: 0.875rem;
-            color: #6a6d70;
-        }
-
-        .sap-status-indicator.sap-success {
-            background: #e8f5e8;
-            color: #2b7d2b;
-        }
-
-        .sap-status-indicator.sap-info {
-            background: #e1f4ff;
-            color: #0057d2;
-        }
-
-        /* SAP Navigation Tabs */
-        .sap-icon-tab-bar {
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-
-        .sap-tab-filters {
-            display: flex;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .sap-tab-filter {
-            flex: 1;
-            text-align: center;
-            padding: 1rem;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.2s;
-            color: #6a6d70;
-            font-weight: 500;
-        }
-
-        .sap-tab-filter:hover {
-            background: #f2f3f4;
-        }
-
-        .sap-tab-filter.sap-selected {
-            color: #0070f2;
-            border-bottom-color: #0070f2;
-            background: white;
-        }
-
-        .sap-tab-content {
-            padding: 2rem;
-        }
-
-        .sap-tab-panel {
-            display: none;
-        }
-
-        .sap-tab-panel.sap-active {
-            display: block;
-        }
-
-        /* SAP Fiori Cards */
-        .sap-card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .sap-card {
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            overflow: hidden;
-            transition: box-shadow 0.2s;
-        }
-
-        .sap-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .sap-card-header {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #e5e5e5;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .sap-card-icon {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 0.25rem;
-            background: linear-gradient(45deg, #0070f2, #14a085);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .sap-card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #32363a;
-            margin-bottom: 0.25rem;
-        }
-
-        .sap-card-subtitle {
-            font-size: 0.875rem;
-            color: #6a6d70;
-        }
-
-        .sap-card-content {
-            padding: 1.5rem;
-        }
-
-        .sap-card-text {
-            color: #6a6d70;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .sap-card-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        /* SAP Buttons */
-        .sap-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #0070f2;
-            background: transparent;
-            color: #0070f2;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .sap-btn:hover {
-            background: #0070f2;
-            color: white;
-        }
-
-        .sap-btn.sap-btn-emphasized {
-            background: #0070f2;
-            color: white;
-        }
-
-        .sap-btn.sap-btn-emphasized:hover {
-            background: #0057d2;
-        }
-
-        /* SAP Object List */
-        .sap-list {
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            overflow hidden;
-        }
-
-        .sap-list-item {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #e5e5e5;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .sap-list-item:last-child {
-            border-bottom: none;
-        }
-
-        .sap-list-icon {
-            color: #0070f2;
-            font-size: 1.2rem;
-            margin-top: 0.2rem;
-        }
-
-        .sap-list-content {
-            flex: 1;
-        }
-
-        .sap-list-title {
-            font-weight: 500;
-            color: #32363a;
-            margin-bottom: 0.25rem;
-        }
-
-        .sap-list-description {
-            color: #6a6d70;
-            font-size: 0.875rem;
-        }
-
-        /* SAP Object Header for Expertise */
-        .sap-object-header {
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            padding: 2rem;
-            margin: 1rem 0;
-        }
-
-        .sap-object-title {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: #32363a;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .sap-object-content {
-            color: #6a6d70;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        /* Contact Section */
-        .sap-contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .sap-contact-card {
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            padding: 1.5rem;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-
-        .sap-contact-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .sap-contact-icon {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #0070f2, #14a085);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 auto 1rem;
-        }
-
-        .sap-contact-title {
-            font-weight: 600;
-            color: #32363a;
-            margin-bottom: 0.5rem;
-        }
-
-        .sap-contact-link {
-            color: #0070f2;
-            text-decoration: none;
-        }
-
-        .sap-contact-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        .sap-footer {
-            background: #354a5f;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .sap-main {
-                padding: 1rem;
-            }
-
-            .sap-page-header {
-                padding: 1.5rem;
-            }
-
-            .sap-tab-filters {
-                flex-direction: column;
-            }
-
-            .sap-tab-filter {
-                border-bottom: 1px solid #e5e5e5;
-                border-right: none;
-            }
-
-            .sap-tab-filter.sap-selected {
-                border-bottom: 1px solid #0070f2;
-                border-right: none;
-            }
-
-            .sap-card-container {
-                grid-template-columns: 1fr;
-            }
-
-            .sap-status-indicators {
-                flex-direction: column;
-            }
-        }
-
-        /* SAP Animations */
-        @keyframes sapFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .sap-animate {
-            animation: sapFadeIn 0.5s ease-out;
-        }
-    </style>
-</head>
-<body>
-    <!-- SAP Fiori Shell Bar -->
-    <div class="sap-shell-bar">
-        <div class="sap-logo">SAP</div>
-        <div class="sap-shell-title">Developer Portfolio</div>
-        <div class="sap-shell-actions">
-            <a href="#" class="sap-shell-action">
-                <i class="fas fa-user"></i>
-            </a>
-            <a href="#" class="sap-shell-action">
-                <i class="fas fa-cog"></i>
-            </a>
+---
+layout: default
+title: Tomasz Dygas - SAP Developer Portfolio
+---
+
+<!-- SAP Page Header -->
+<div class="sap-page-header sap-animate">
+    <div class="sap-avatar">
+        <i class="fas fa-user"></i>
+    </div>
+    <h1 class="sap-page-title">Tomasz Dygas</h1>
+    <p class="sap-page-subtitle">SAP Developer &bull; Solution Architect &bull; DevOps Specialist</p>
+    <div class="sap-status-indicators">
+        <div class="sap-status-indicator sap-success">
+            <i class="fas fa-check-circle"></i>
+            <span>Available for Projects</span>
+        </div>
+        <div class="sap-status-indicator sap-info">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Warsaw, Poland</span>
+        </div>
+        <div class="sap-status-indicator">
+            <i class="fas fa-calendar"></i>
+            <span>15+ Years Experience</span>
+        </div>
+    </div>
+</div>
+
+<!-- SAP Icon Tab Bar -->
+<div class="sap-icon-tab-bar sap-animate">
+    <div class="sap-tab-filters">
+        <div class="sap-tab-filter sap-selected" onclick="showTab('overview')">
+            <i class="fas fa-home"></i>&nbsp;&nbsp;Overview
+        </div>
+        <div class="sap-tab-filter" onclick="showTab('services')">
+            <i class="fas fa-briefcase"></i>&nbsp;&nbsp;Services
+        </div>
+        <div class="sap-tab-filter" onclick="showTab('contact')">
+            <i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="sap-main">
-        <!-- SAP Page Header -->
-        <div class="sap-page-header sap-animate">
-            <div class="sap-avatar">
-                <i class="fas fa-user"></i>
-            </div>
-            <h1 class="sap-page-title">Tomasz Dygas</h1>
-            <p class="sap-page-subtitle">SAP Developer • Solution Architect • DevOps Specialist</p>
-            <div class="sap-status-indicators">
-                <div class="sap-status-indicator sap-success">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Available for Projects</span>
-                </div>
-                <div class="sap-status-indicator sap-info">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Warsaw, Poland</span>
-                </div>
-                <div class="sap-status-indicator">
-                    <i class="fas fa-calendar"></i>
-                    <span>15+ Years Experience</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- SAP Icon Tab Bar -->
-        <div class="sap-icon-tab-bar sap-animate">
-            <div class="sap-tab-filters">
-                <div class="sap-tab-filter sap-selected" onclick="showTab('overview')">
-                    <i class="fas fa-home"></i>&nbsp;&nbsp;Overview
-                </div>
-                <div class="sap-tab-filter" onclick="showTab('services')">
-                    <i class="fas fa-briefcase"></i>&nbsp;&nbsp;Services
-                </div>
-                <div class="sap-tab-filter" onclick="showTab('contact')">
-                    <i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact
-                </div>
+    <!-- Overview Tab -->
+    <div id="overview" class="sap-tab-panel sap-active">
+        <div class="sap-tab-content">
+            <div class="sap-object-header">
+                <h2 class="sap-object-title">About Me</h2>
+                <p class="sap-object-content">
+                    Hi there!<br><br>
+                    I'm a SAP Developer, Solution Architect, and DevOps specialist currently working as a freelancer
+                    in Warsaw, Poland. I have been developing applications within the SAP system for over 15 years,
+                    bringing deep expertise and innovative solutions to complex business challenges.
+                </p>
             </div>
 
-            <!-- Overview Tab -->
-            <div id="overview" class="sap-tab-panel sap-active">
-                <div class="sap-tab-content">
-                    <div class="sap-object-header">
-                        <h2 class="sap-object-title">About Me</h2>
-                        <p class="sap-object-content">
-                            Hi there 👋<br><br>
-                            I'm a SAP Developer, Solution Architect, and DevOps specialist currently working as a freelancer 
-                            in Warsaw, Poland. I have been developing applications within the SAP system for over 15 years, 
-                            bringing deep expertise and innovative solutions to complex business challenges.
-                        </p>
-                    </div>
-
-                    <div class="sap-card-container">
-                        <div class="sap-card">
-                            <div class="sap-card-header">
-                                <div class="sap-card-icon">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <div>
-                                    <div class="sap-card-title">SAP Development</div>
-                                    <div class="sap-card-subtitle">15+ years of experience</div>
-                                </div>
-                            </div>
-                            <div class="sap-card-content">
-                                <p class="sap-card-text">Extensive experience in ABAP development, custom solutions, and SAP application enhancement.</p>
-                            </div>
+            <div class="sap-card-container">
+                <div class="sap-card">
+                    <div class="sap-card-header">
+                        <div class="sap-card-icon">
+                            <i class="fas fa-code"></i>
                         </div>
-
-                        <div class="sap-card">
-                            <div class="sap-card-header">
-                                <div class="sap-card-icon">
-                                    <i class="fas fa-sitemap"></i>
-                                </div>
-                                <div>
-                                    <div class="sap-card-title">Solution Architecture</div>
-                                    <div class="sap-card-subtitle">Enterprise-grade solutions</div>
-                                </div>
-                            </div>
-                            <div class="sap-card-content">
-                                <p class="sap-card-text">Designing flexible, maintainable, and scalable SAP architectures for complex business requirements.</p>
-                            </div>
-                        </div>
-
-                        <div class="sap-card">
-                            <div class="sap-card-header">
-                                <div class="sap-card-icon">
-                                    <i class="fas fa-cogs"></i>
-                                </div>
-                                <div>
-                                    <div class="sap-card-title">SAP DevOps</div>
-                                    <div class="sap-card-subtitle">Automation & CI/CD</div>
-                                </div>
-                            </div>
-                            <div class="sap-card-content">
-                                <p class="sap-card-text">Implementation of DevOps practices, automated testing, and continuous integration for SAP environments.</p>
-                            </div>
+                        <div>
+                            <div class="sap-card-title">SAP Development</div>
+                            <div class="sap-card-subtitle">15+ years of experience</div>
                         </div>
                     </div>
+                    <div class="sap-card-content">
+                        <p class="sap-card-text">Extensive experience in ABAP development, custom solutions, and SAP application enhancement.</p>
+                    </div>
+                </div>
 
-                    <div class="sap-object-header">
-                        <h3 class="sap-object-title">My Expertise</h3>
-                        <p class="sap-object-content">
-                            I focus on creating maintainable software architecture, creation of new solutions, development of existing applications and improving performance by:
-                        </p>
-                        
-                        <div class="sap-list">
-                            <div class="sap-list-item">
-                                <div class="sap-list-icon">🤔</div>
-                                <div class="sap-list-content">
-                                    <div class="sap-list-title">Flexible Architecture Design</div>
-                                    <div class="sap-list-description">Designing flexible architecture that is easy to maintain and scale</div>
-                                </div>
-                            </div>
-                            <div class="sap-list-item">
-                                <div class="sap-list-icon">🤔</div>
-                                <div class="sap-list-content">
-                                    <div class="sap-list-title">Code Review & Refactoring</div>
-                                    <div class="sap-list-description">Perform code review, refactoring and rebuilding of existing solutions</div>
-                                </div>
-                            </div>
-                            <div class="sap-list-item">
-                                <div class="sap-list-icon">⚙️</div>
-                                <div class="sap-list-content">
-                                    <div class="sap-list-title">Automation Solutions</div>
-                                    <div class="sap-list-description">Creating automation solutions to improve efficiency and reduce manual work</div>
-                                </div>
-                            </div>
-                            <div class="sap-list-item">
-                                <div class="sap-list-icon">👥</div>
-                                <div class="sap-list-content">
-                                    <div class="sap-list-title">Best Practices</div>
-                                    <div class="sap-list-description">Establishing best practices for architecture and testing</div>
-                                </div>
-                            </div>
-                            <div class="sap-list-item">
-                                <div class="sap-list-icon">📋</div>
-                                <div class="sap-list-content">
-                                    <div class="sap-list-title">DevOps Implementation</div>
-                                    <div class="sap-list-description">Implementation of DevOps environment in line with Agile and traditional SAP release approaches</div>
-                                </div>
-                            </div>
-                            <div class="sap-list-item">
-                                <div class="sap-list-icon">🛠️</div>
-                                <div class="sap-list-content">
-                                    <div class="sap-list-title">Pragmatic Solutions</div>
-                                    <div class="sap-list-description">Design and implement flexible and pragmatic solutions for hard problems</div>
-                                </div>
-                            </div>
-                            <div class="sap-list-item">
-                                <div class="sap-list-icon">🧙</div>
-                                <div class="sap-list-content">
-                                    <div class="sap-list-title">And Much More...</div>
-                                    <div class="sap-list-description">Comprehensive SAP consulting and development services</div>
-                                </div>
-                            </div>
+                <div class="sap-card">
+                    <div class="sap-card-header">
+                        <div class="sap-card-icon">
+                            <i class="fas fa-sitemap"></i>
                         </div>
+                        <div>
+                            <div class="sap-card-title">Solution Architecture</div>
+                            <div class="sap-card-subtitle">Enterprise-grade solutions</div>
+                        </div>
+                    </div>
+                    <div class="sap-card-content">
+                        <p class="sap-card-text">Designing flexible, maintainable, and scalable SAP architectures for complex business requirements.</p>
+                    </div>
+                </div>
+
+                <div class="sap-card">
+                    <div class="sap-card-header">
+                        <div class="sap-card-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div>
+                            <div class="sap-card-title">SAP DevOps</div>
+                            <div class="sap-card-subtitle">Automation & CI/CD</div>
+                        </div>
+                    </div>
+                    <div class="sap-card-content">
+                        <p class="sap-card-text">Implementation of DevOps practices, automated testing, and continuous integration for SAP environments.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Services Tab -->
-            <div id="services" class="sap-tab-panel">
-                <div class="sap-tab-content">
-                    <h2 class="sap-object-title">Featured Services</h2>
-                    <div class="sap-card-container">
-                        <div class="sap-card">
-                            <div class="sap-card-header">
-                                <div class="sap-card-icon">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <div>
-                                    <div class="sap-card-title">SAP Custom Development</div>
-                                    <div class="sap-card-subtitle">ABAP & Enhancement</div>
-                                </div>
-                            </div>
-                            <div class="sap-card-content">
-                                <p class="sap-card-text">Custom ABAP development, enhancement implementations, and complex business logic solutions tailored to specific client requirements.</p>
-                                <div class="sap-card-actions">
-                                    <a href="#" class="sap-btn sap-btn-emphasized">
-                                        <i class="fas fa-info-circle"></i> Learn More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="sap-object-header">
+                <h3 class="sap-object-title">My Expertise</h3>
+                <p class="sap-object-content">
+                    I focus on creating maintainable software architecture, creation of new solutions, development of existing applications and improving performance by:
+                </p>
 
-                        <div class="sap-card">
-                            <div class="sap-card-header">
-                                <div class="sap-card-icon">
-                                    <i class="fas fa-plug"></i>
-                                </div>
-                                <div>
-                                    <div class="sap-card-title">System Integration</div>
-                                    <div class="sap-card-subtitle">APIs & Data Migration</div>
-                                </div>
-                            </div>
-                            <div class="sap-card-content">
-                                <p class="sap-card-text">SAP system integration with third-party applications, API development, and data migration solutions using modern integration patterns.</p>
-                                <div class="sap-card-actions">
-                                    <a href="#" class="sap-btn sap-btn-emphasized">
-                                        <i class="fas fa-info-circle"></i> Learn More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="sap-card">
-                            <div class="sap-card-header">
-                                <div class="sap-card-icon">
-                                    <i class="fas fa-rocket"></i>
-                                </div>
-                                <div>
-                                    <div class="sap-card-title">DevOps Solutions</div>
-                                    <div class="sap-card-subtitle">CI/CD & Automation</div>
-                                </div>
-                            </div>
-                            <div class="sap-card-content">
-                                <p class="sap-card-text">Implementation of CI/CD pipelines, automated testing frameworks, and deployment strategies for SAP environments.</p>
-                                <div class="sap-card-actions">
-                                    <a href="#" class="sap-btn sap-btn-emphasized">
-                                        <i class="fas fa-info-circle"></i> Learn More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="sap-card">
-                            <div class="sap-card-header">
-                                <div class="sap-card-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                <div>
-                                    <div class="sap-card-title">Performance Optimization</div>
-                                    <div class="sap-card-subtitle">Code Review & Tuning</div>
-                                </div>
-                            </div>
-                            <div class="sap-card-content">
-                                <p class="sap-card-text">Code review, refactoring, and performance tuning of existing SAP applications to improve efficiency and maintainability.</p>
-                                <div class="sap-card-actions">
-                                    <a href="#" class="sap-btn sap-btn-emphasized">
-                                        <i class="fas fa-info-circle"></i> Learn More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="sap-card">
-                            <div class="sap-card-header">
-                                <div class="sap-card-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div>
-                                    <div class="sap-card-title">Architecture Consulting</div>
-                                    <div class="sap-card-subtitle">Solution Design</div>
-                                </div>
-                            </div>
-                            <div class="sap-card-content">
-                                <p class="sap-card-text">Solution architecture design, best practices implementation, and technical guidance for complex SAP landscapes.</p>
-                                <div class="sap-card-actions">
-                                    <a href="#" class="sap-btn sap-btn-emphasized">
-                                        <i class="fas fa-info-circle"></i> Learn More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="sap-card">
-                            <div class="sap-card-header">
-                                <div class="sap-card-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div>
-                                    <div class="sap-card-title">Training & Mentoring</div>
-                                    <div class="sap-card-subtitle">Knowledge Transfer</div>
-                                </div>
-                            </div>
-                            <div class="sap-card-content">
-                                <p class="sap-card-text">Knowledge transfer, team mentoring, and best practices workshops for development teams working with SAP technologies.</p>
-                                <div class="sap-card-actions">
-                                    <a href="#" class="sap-btn sap-btn-emphasized">
-                                        <i class="fas fa-info-circle"></i> Learn More
-                                    </a>
-                                </div>
-                            </div>
+                <div class="sap-list">
+                    <div class="sap-list-item">
+                        <div class="sap-list-icon"><i class="fas fa-drafting-compass"></i></div>
+                        <div class="sap-list-content">
+                            <div class="sap-list-title">Flexible Architecture Design</div>
+                            <div class="sap-list-description">Designing flexible architecture that is easy to maintain and scale</div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Contact Tab -->
-            <div id="contact" class="sap-tab-panel">
-                <div class="sap-tab-content">
-                    <h2 class="sap-object-title">Get In Touch</h2>
-                    <p style="text-align: center; color: #6a6d70; margin-bottom: 2rem;">
-                        📣 Would you like to contact me? You can find me here:
-                    </p>
-                    
-                    <div class="sap-contact-grid">
-                        <div class="sap-contact-card">
-                            <div class="sap-contact-icon">
-                                <i class="fab fa-github"></i>
-                            </div>
-                            <h3 class="sap-contact-title">GitHub</h3>
-                            <a href="https://github.com/lolek24" target="_blank" class="sap-contact-link">github.com/lolek24</a>
+                    <div class="sap-list-item">
+                        <div class="sap-list-icon"><i class="fas fa-search"></i></div>
+                        <div class="sap-list-content">
+                            <div class="sap-list-title">Code Review & Refactoring</div>
+                            <div class="sap-list-description">Perform code review, refactoring and rebuilding of existing solutions</div>
                         </div>
-                        
-                        <div class="sap-contact-card">
-                            <div class="sap-contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <h3 class="sap-contact-title">Email</h3>
-                            <a href="mailto:your.email@example.com" class="sap-contact-link">your.email@example.com</a>
+                    </div>
+                    <div class="sap-list-item">
+                        <div class="sap-list-icon"><i class="fas fa-cog"></i></div>
+                        <div class="sap-list-content">
+                            <div class="sap-list-title">Automation Solutions</div>
+                            <div class="sap-list-description">Creating automation solutions to improve efficiency and reduce manual work</div>
                         </div>
-                        
-                        <div class="sap-contact-card">
-                            <div class="sap-contact-icon">
-                                <i class="fab fa-linkedin"></i>
-                            </div>
-                            <h3 class="sap-contact-title">LinkedIn</h3>
-                            <a href="#" target="_blank" class="sap-contact-link">Connect with me</a>
+                    </div>
+                    <div class="sap-list-item">
+                        <div class="sap-list-icon"><i class="fas fa-users"></i></div>
+                        <div class="sap-list-content">
+                            <div class="sap-list-title">Best Practices</div>
+                            <div class="sap-list-description">Establishing best practices for architecture and testing</div>
                         </div>
-                        
-                        <div class="sap-contact-card">
-                            <div class="sap-contact-icon">
-                                <i class="fab fa-twitter"></i>
-                            </div>
-                            <h3 class="sap-contact-title">Twitter</h3>
-                            <a href="#" target="_blank" class="sap-contact-link">@lolek24</a>
+                    </div>
+                    <div class="sap-list-item">
+                        <div class="sap-list-icon"><i class="fas fa-clipboard-list"></i></div>
+                        <div class="sap-list-content">
+                            <div class="sap-list-title">DevOps Implementation</div>
+                            <div class="sap-list-description">Implementation of DevOps environment in line with Agile and traditional SAP release approaches</div>
+                        </div>
+                    </div>
+                    <div class="sap-list-item">
+                        <div class="sap-list-icon"><i class="fas fa-wrench"></i></div>
+                        <div class="sap-list-content">
+                            <div class="sap-list-title">Pragmatic Solutions</div>
+                            <div class="sap-list-description">Design and implement flexible and pragmatic solutions for hard problems</div>
+                        </div>
+                    </div>
+                    <div class="sap-list-item">
+                        <div class="sap-list-icon"><i class="fas fa-star"></i></div>
+                        <div class="sap-list-content">
+                            <div class="sap-list-title">And Much More...</div>
+                            <div class="sap-list-description">Comprehensive SAP consulting and development services</div>
                         </div>
                     </div>
                 </div>
@@ -802,27 +161,186 @@
         </div>
     </div>
 
-    <!-- SAP Footer -->
-    <div class="sap-footer">
-        <p>&copy; 2025 Tomasz Dygas. </p>
+    <!-- Services Tab -->
+    <div id="services" class="sap-tab-panel">
+        <div class="sap-tab-content">
+            <h2 class="sap-object-title">Featured Services</h2>
+            <div class="sap-card-container">
+                <div class="sap-card">
+                    <div class="sap-card-header">
+                        <div class="sap-card-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div>
+                            <div class="sap-card-title">SAP Custom Development</div>
+                            <div class="sap-card-subtitle">ABAP & Enhancement</div>
+                        </div>
+                    </div>
+                    <div class="sap-card-content">
+                        <p class="sap-card-text">Custom ABAP development, enhancement implementations, and complex business logic solutions tailored to specific client requirements.</p>
+                        <div class="sap-card-actions">
+                            <a href="{{ '/portfolio' | relative_url }}" class="sap-btn sap-btn-emphasized">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sap-card">
+                    <div class="sap-card-header">
+                        <div class="sap-card-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <div>
+                            <div class="sap-card-title">System Integration</div>
+                            <div class="sap-card-subtitle">APIs & Data Migration</div>
+                        </div>
+                    </div>
+                    <div class="sap-card-content">
+                        <p class="sap-card-text">SAP system integration with third-party applications, API development, and data migration solutions using modern integration patterns.</p>
+                        <div class="sap-card-actions">
+                            <a href="{{ '/portfolio' | relative_url }}" class="sap-btn sap-btn-emphasized">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sap-card">
+                    <div class="sap-card-header">
+                        <div class="sap-card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div>
+                            <div class="sap-card-title">DevOps Solutions</div>
+                            <div class="sap-card-subtitle">CI/CD & Automation</div>
+                        </div>
+                    </div>
+                    <div class="sap-card-content">
+                        <p class="sap-card-text">Implementation of CI/CD pipelines, automated testing frameworks, and deployment strategies for SAP environments.</p>
+                        <div class="sap-card-actions">
+                            <a href="{{ '/portfolio' | relative_url }}" class="sap-btn sap-btn-emphasized">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sap-card">
+                    <div class="sap-card-header">
+                        <div class="sap-card-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div>
+                            <div class="sap-card-title">Performance Optimization</div>
+                            <div class="sap-card-subtitle">Code Review & Tuning</div>
+                        </div>
+                    </div>
+                    <div class="sap-card-content">
+                        <p class="sap-card-text">Code review, refactoring, and performance tuning of existing SAP applications to improve efficiency and maintainability.</p>
+                        <div class="sap-card-actions">
+                            <a href="{{ '/portfolio' | relative_url }}" class="sap-btn sap-btn-emphasized">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sap-card">
+                    <div class="sap-card-header">
+                        <div class="sap-card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <div class="sap-card-title">Architecture Consulting</div>
+                            <div class="sap-card-subtitle">Solution Design</div>
+                        </div>
+                    </div>
+                    <div class="sap-card-content">
+                        <p class="sap-card-text">Solution architecture design, best practices implementation, and technical guidance for complex SAP landscapes.</p>
+                        <div class="sap-card-actions">
+                            <a href="{{ '/portfolio' | relative_url }}" class="sap-btn sap-btn-emphasized">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sap-card">
+                    <div class="sap-card-header">
+                        <div class="sap-card-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <div class="sap-card-title">Training & Mentoring</div>
+                            <div class="sap-card-subtitle">Knowledge Transfer</div>
+                        </div>
+                    </div>
+                    <div class="sap-card-content">
+                        <p class="sap-card-text">Knowledge transfer, team mentoring, and best practices workshops for development teams working with SAP technologies.</p>
+                        <div class="sap-card-actions">
+                            <a href="{{ '/portfolio' | relative_url }}" class="sap-btn sap-btn-emphasized">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script>
-        function showTab(tabName) {
-            // Hide all tab panels
-            const panels = document.querySelectorAll('.sap-tab-panel');
-            panels.forEach(panel => panel.classList.remove('sap-active'));
-            
-            // Show the selected tab panel
-            document.getElementById(tabName).classList.add('sap-active');
-            
-            // Update tab filter styles
-            const filters = document.querySelectorAll('.sap-tab-filter');
-            filters.forEach(filter => filter.classList.remove('sap-selected'));
-            
-            // Select the clicked tab
-            event.currentTarget.classList.add('sap-selected');
-        }
-    </script>
-</body>
-</html>
+    <!-- Contact Tab -->
+    <div id="contact" class="sap-tab-panel">
+        <div class="sap-tab-content">
+            <h2 class="sap-object-title">Get In Touch</h2>
+            <p style="text-align: center; color: #6a6d70; margin-bottom: 2rem;">
+                Would you like to contact me? You can find me here:
+            </p>
+
+            <div class="sap-contact-grid">
+                <div class="sap-contact-card">
+                    <div class="sap-contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 class="sap-contact-title">GitHub</h3>
+                    <a href="https://github.com/lolek24" target="_blank" class="sap-contact-link">github.com/lolek24</a>
+                </div>
+
+                <div class="sap-contact-card">
+                    <div class="sap-contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="sap-contact-title">Email</h3>
+                    <a href="mailto:your.email@example.com" class="sap-contact-link">your.email@example.com</a>
+                </div>
+
+                <div class="sap-contact-card">
+                    <div class="sap-contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3 class="sap-contact-title">LinkedIn</h3>
+                    <a href="#" target="_blank" class="sap-contact-link">Connect with me</a>
+                </div>
+
+                <div class="sap-contact-card">
+                    <div class="sap-contact-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3 class="sap-contact-title">Twitter</h3>
+                    <a href="#" target="_blank" class="sap-contact-link">@lolek24</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showTab(tabName) {
+        var panels = document.querySelectorAll('.sap-tab-panel');
+        panels.forEach(function(panel) { panel.classList.remove('sap-active'); });
+        document.getElementById(tabName).classList.add('sap-active');
+        var filters = document.querySelectorAll('.sap-tab-filter');
+        filters.forEach(function(filter) { filter.classList.remove('sap-selected'); });
+        event.currentTarget.classList.add('sap-selected');
+    }
+</script>

@@ -1,0 +1,8 @@
+title: Tomasz Dygas - SAP Developer Portfolio
+description: SAP Developer, Solution Architect & DevOps Specialist
+author: Tomasz Dygas
+baseurl: ""
+url: "https://lolek24.github.io"
+
+# Build settings
+markdown: kramdown
