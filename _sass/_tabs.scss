@@ -1,0 +1,46 @@
+// SAP Navigation Tabs
+.sap-icon-tab-bar {
+    background: $sap-bg-card;
+    border-radius: $border-radius;
+    box-shadow: $card-shadow;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.sap-tab-filters {
+    display: flex;
+    border-bottom: 1px solid $sap-border;
+}
+
+.sap-tab-filter {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    color: $sap-text-light;
+    font-weight: 500;
+
+    &:hover {
+        background: $sap-bg-neutral;
+    }
+
+    &.sap-selected {
+        color: $sap-brand;
+        border-bottom-color: $sap-brand;
+        background: $sap-bg-card;
+    }
+}
+
+.sap-tab-content {
+    padding: 2rem;
+}
+
+.sap-tab-panel {
+    display: none;
+
+    &.sap-active {
+        display: block;
+    }
+}

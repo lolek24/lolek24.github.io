@@ -1,8 +1,29 @@
 title: Tomasz Dygas - SAP Developer Portfolio
-description: SAP Developer, Solution Architect & DevOps Specialist
+description: >-
+  SAP Developer, Solution Architect & DevOps Specialist based in Warsaw, Poland.
+  Over 15 years of experience in SAP development, architecture, and DevOps.
 author: Tomasz Dygas
 baseurl: ""
 url: "https://lolek24.github.io"
 
 # Build settings
 markdown: kramdown
+permalink: pretty
+
+# Sass
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Front matter defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
