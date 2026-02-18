@@ -1,0 +1,28 @@
+// SAP Fiori color palette
+$sap-shell: #354a5f;
+$sap-brand: #0070f2;
+$sap-brand-dark: #0057d2;
+$sap-accent: #14a085;
+$sap-text: #32363a;
+$sap-text-light: #6a6d70;
+$sap-bg: #f7f7f7;
+$sap-bg-card: #fff;
+$sap-border: #e5e5e5;
+$sap-bg-neutral: #f2f3f4;
+$sap-success-bg: #e8f5e8;
+$sap-success-text: #2b7d2b;
+$sap-info-bg: #e1f4ff;
+$sap-info-text: $sap-brand-dark;
+
+// Typography
+$sap-font-family: "72", "Helvetica Neue", Arial, sans-serif;
+
+// Spacing & Sizing
+$shell-bar-height: 44px;
+$border-radius: 0.5rem;
+$card-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+$card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+// Gradients
+$sap-gradient: linear-gradient(45deg, $sap-brand, $sap-accent);
+$sap-gradient-horizontal: linear-gradient(90deg, $sap-brand, $sap-accent);

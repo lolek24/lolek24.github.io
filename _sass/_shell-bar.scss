@@ -1,0 +1,44 @@
+// SAP Fiori Shell Bar
+.sap-shell-bar {
+    background: $sap-shell;
+    height: $shell-bar-height;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.sap-logo {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-right: 2rem;
+}
+
+.sap-shell-title {
+    color: white;
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+.sap-shell-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.sap-shell-action {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}

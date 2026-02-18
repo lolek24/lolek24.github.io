@@ -1,0 +1,172 @@
+// Portfolio Page Styles
+.sap-section {
+    margin-bottom: 2rem;
+}
+
+.sap-section-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: $sap-text;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid $sap-brand;
+    display: inline-block;
+}
+
+// Timeline
+.sap-timeline {
+    position: relative;
+    padding-left: 2rem;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0.5rem;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: $sap-brand;
+    }
+}
+
+.sap-timeline-item {
+    position: relative;
+    background: $sap-bg-card;
+    border-radius: $border-radius;
+    box-shadow: $card-shadow;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: -1.75rem;
+        top: 1.5rem;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: $sap-brand;
+        border: 2px solid white;
+        box-shadow: 0 0 0 2px $sap-brand;
+    }
+}
+
+.sap-timeline-title {
+    font-weight: 600;
+    color: $sap-text;
+    margin-bottom: 0.25rem;
+}
+
+.sap-timeline-subtitle {
+    color: $sap-brand;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.sap-timeline-date {
+    color: $sap-text-light;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.sap-timeline-description {
+    color: $sap-text-light;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+// Skill Grid
+.sap-skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.sap-skill-card {
+    background: $sap-bg-card;
+    border-radius: $border-radius;
+    box-shadow: $card-shadow;
+    padding: 1.5rem;
+}
+
+.sap-skill-category {
+    font-weight: 600;
+    color: $sap-text;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+        color: $sap-brand;
+    }
+}
+
+.sap-skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sap-skill-tag {
+    background: $sap-info-bg;
+    color: $sap-info-text;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    &.sap-highlight {
+        background: $sap-gradient;
+        color: white;
+    }
+}
+
+// Project Cards
+.sap-project-card {
+    background: $sap-bg-card;
+    border-radius: $border-radius;
+    box-shadow: $card-shadow;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+
+    &:hover {
+        box-shadow: $card-shadow-hover;
+        transform: translateY(-2px);
+    }
+}
+
+.sap-project-banner {
+    height: 8px;
+    background: $sap-gradient-horizontal;
+}
+
+.sap-project-body {
+    padding: 1.5rem;
+}
+
+.sap-project-title {
+    font-weight: 600;
+    color: $sap-text;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+        color: $sap-brand;
+    }
+}
+
+.sap-project-description {
+    color: $sap-text-light;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.sap-project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}

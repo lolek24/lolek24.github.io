@@ -1,0 +1,80 @@
+// Main Content
+.sap-main {
+    margin-top: $shell-bar-height;
+    padding: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// SAP Fiori Page Header
+.sap-page-header {
+    background: $sap-bg-card;
+    border-radius: $border-radius;
+    box-shadow: $card-shadow;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid $sap-brand;
+}
+
+.sap-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: $sap-gradient;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.sap-page-title {
+    font-size: 2rem;
+    font-weight: 300;
+    color: $sap-text;
+    margin-bottom: 0.5rem;
+}
+
+.sap-page-subtitle {
+    color: $sap-text-light;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sap-status-indicators {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.sap-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: $sap-bg-neutral;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    color: $sap-text-light;
+
+    &.sap-success {
+        background: $sap-success-bg;
+        color: $sap-success-text;
+    }
+
+    &.sap-info {
+        background: $sap-info-bg;
+        color: $sap-info-text;
+    }
+}
+
+// Footer
+.sap-footer {
+    background: $sap-shell;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
