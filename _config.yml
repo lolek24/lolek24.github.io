@@ -38,4 +38,4 @@ plugins:
   - jekyll-remote-theme
   - jekyll-sitemap
 
-remote_theme: riggraz/no-style-please
+remote_theme: just-the-docs/just-the-docs
