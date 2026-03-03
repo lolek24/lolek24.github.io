@@ -1,0 +1,723 @@
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Shared Site Styles -->
+<style>
+/* ── Design tokens (minimalist palette) ── */
+:root {
+  --p-accent:      #2563eb;
+  --p-accent-soft: #eff6ff;
+  --p-border:      #e5e7eb;
+  --p-bg:          #f9fafb;
+  --p-text:        #1f2937;
+  --p-muted:       #6b7280;
+  --p-white:       #ffffff;
+  --p-radius:      6px;
+}
+
+/* ── just-the-docs compatibility ── */
+html { overflow-y: scroll; }
+.main-content h1,
+.main-content h2,
+.main-content h3 { margin-top: 0; }
+.main-content .sap-section h2,
+.main-content .sap-section-title {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+/* Hide auto-generated page title when custom header is present */
+.main-content > h1:first-child { display: none; }
+
+/* ── Hero banner (index page) ── */
+.sap-page-hero {
+  text-align: center;
+  padding: 2.5rem 1rem 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--p-border);
+}
+.sap-hero-avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--p-accent-soft); color: var(--p-accent);
+  font-size: 1.2rem; font-weight: 600; margin-bottom: .75rem;
+}
+.sap-hero-name {
+  font-size: 1.5rem; font-weight: 700; margin: 0 0 .3rem; color: var(--p-text);
+}
+.sap-hero-subtitle {
+  color: var(--p-muted); font-size: .9rem; margin: 0 0 1.25rem;
+}
+.sap-hero-cta {
+  display: flex; justify-content: center; gap: .5rem; flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.sap-btn-hw {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .45rem 1rem; border-radius: var(--p-radius); font-size: .84rem; font-weight: 500;
+  text-decoration: none;
+  background: var(--p-accent); color: var(--p-white); border: 1px solid var(--p-accent);
+  transition: opacity .15s;
+}
+.sap-btn-hw:hover { opacity: .85; color: var(--p-white); text-decoration: none; }
+.sap-btn-ho {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .45rem 1rem; border-radius: var(--p-radius); font-size: .84rem; font-weight: 500;
+  text-decoration: none;
+  background: var(--p-white); color: var(--p-text); border: 1px solid var(--p-border);
+  transition: border-color .15s;
+}
+.sap-btn-ho:hover { border-color: var(--p-muted); text-decoration: none; color: var(--p-text); }
+.sap-hero-badges {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: .4rem;
+}
+.sap-hero-badge {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .6rem; border-radius: 2em;
+  font-size: .75rem; font-weight: 500;
+  color: var(--p-muted);
+}
+
+/* ── Feature cards (index page) ── */
+.sap-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.sap-feature-card {
+  padding: 1.1rem;
+  border-bottom: 1px solid var(--p-border);
+}
+.sap-feature-card:last-child { border-bottom: none; }
+.sap-feature-icon {
+  width: 32px; height: 32px; border-radius: var(--p-radius);
+  background: var(--p-accent-soft); color: var(--p-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; margin-bottom: .6rem;
+}
+.sap-feature-title { font-size: .9rem; font-weight: 600; color: var(--p-text); margin-bottom: .1rem; }
+.sap-feature-subtitle { font-size: .75rem; color: var(--p-muted); margin-bottom: .5rem; }
+.sap-feature-text { font-size: .84rem; color: var(--p-muted); line-height: 1.6; margin: 0; }
+
+/* ── Stats row (index page) ── */
+.sap-stats-row {
+  display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+  padding: 1.25rem 1rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid var(--p-border);
+  border-bottom: 1px solid var(--p-border);
+}
+.sap-stat-item { text-align: center; }
+.sap-stat-value { font-size: 1.4rem; font-weight: 700; color: var(--p-text); }
+.sap-stat-label { font-size: .75rem; color: var(--p-muted); }
+
+/* ── Page header (portfolio) ── */
+.sap-page-header {
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  border-bottom: 1px solid var(--p-border);
+  margin-bottom: 2rem;
+}
+.sap-avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--p-accent-soft); color: var(--p-accent);
+  font-size: 1.1rem; margin-bottom: .6rem;
+}
+.sap-page-title  { font-size: 1.4rem; font-weight: 700; margin: 0 0 .3rem; color: var(--p-text); }
+.sap-page-subtitle { color: var(--p-muted); font-size: .88rem; margin: 0 0 1rem; }
+
+/* status chips */
+.sap-status-indicators { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; }
+.sap-status-indicator {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .6rem; border-radius: 2em;
+  font-size: .75rem; font-weight: 500;
+  color: var(--p-muted);
+}
+.sap-status-indicator.sap-info    { color: var(--p-accent); }
+.sap-status-indicator.sap-success { color: #16a34a; }
+
+/* ── Section wrapper ── */
+.sap-section { margin-bottom: 2.5rem; }
+.sap-section-title {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: 1rem; font-weight: 600; color: var(--p-text);
+  margin: 0 0 1rem;
+  letter-spacing: -.01em;
+}
+.sap-section-title i {
+  color: var(--p-muted); font-size: .8rem;
+}
+
+/* ── Skill grid ── */
+.sap-skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: .75rem;
+}
+.sap-skill-card {
+  padding: 1rem;
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius);
+}
+.sap-skill-category {
+  font-size: .8rem; font-weight: 600; color: var(--p-text);
+  margin-bottom: .6rem; display: flex; align-items: center; gap: .35rem;
+}
+.sap-skill-category i { color: var(--p-muted); }
+.sap-skill-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+.sap-skill-tag {
+  font-size: .72rem; padding: .15rem .5rem; border-radius: 3px;
+  background: var(--p-bg); color: var(--p-muted); font-weight: 400;
+}
+.sap-skill-tag.sap-highlight {
+  background: var(--p-accent-soft); color: var(--p-accent); font-weight: 600;
+}
+
+/* ── Card container ── */
+.sap-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: .75rem;
+}
+
+/* ── Generic card ── */
+.sap-card {
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius); overflow: hidden;
+}
+.sap-card-header {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .85rem 1rem .65rem;
+  border-bottom: 1px solid var(--p-border);
+}
+.sap-card-icon {
+  width: 32px; height: 32px; border-radius: var(--p-radius);
+  background: var(--p-accent-soft); color: var(--p-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; flex-shrink: 0;
+}
+.sap-card-title    { font-size: .85rem; font-weight: 600; color: var(--p-text); margin: 0; }
+.sap-card-subtitle { font-size: .72rem; color: var(--p-muted); margin: 0; }
+.sap-card-content  { padding: .85rem 1rem; }
+.sap-card-text     { font-size: .84rem; color: var(--p-muted); line-height: 1.6; margin: 0; }
+
+/* ── Project cards ── */
+.sap-project-card {
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius); overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.sap-project-banner { height: 2px; background: var(--p-border); }
+.sap-project-card:nth-child(1) .sap-project-banner { background: var(--p-accent); }
+.sap-project-card:nth-child(2) .sap-project-banner { background: #16a34a; }
+.sap-project-card:nth-child(3) .sap-project-banner { background: #7c3aed; }
+.sap-project-card:nth-child(4) .sap-project-banner { background: #0891b2; }
+.sap-project-card:nth-child(5) .sap-project-banner { background: #ea580c; }
+.sap-project-card:nth-child(6) .sap-project-banner { background: #dc2626; }
+.sap-project-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: .5rem; }
+.sap-project-title {
+  font-size: .88rem; font-weight: 600; color: var(--p-text);
+  display: flex; align-items: flex-start; gap: .4rem;
+}
+.sap-project-title i { color: var(--p-muted); margin-top: 2px; flex-shrink: 0; font-size: .8rem; }
+.sap-project-description { font-size: .84rem; color: var(--p-muted); line-height: 1.6; margin: 0; flex: 1; }
+.sap-project-tags { display: flex; flex-wrap: wrap; gap: .25rem; margin-top: auto; padding-top: .3rem; }
+
+/* ── Timeline ── */
+.sap-timeline { position: relative; padding-left: 1.2rem; }
+.sap-timeline::before {
+  content: ''; position: absolute; left: 3px; top: 6px; bottom: 6px;
+  width: 1px; background: var(--p-border);
+}
+.sap-timeline-item { position: relative; margin-bottom: 1.5rem; padding-left: 1rem; }
+.sap-timeline-item::before {
+  content: ''; position: absolute; left: -1.2rem; top: 7px;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--p-border);
+}
+.sap-timeline-item:first-child::before {
+  background: var(--p-accent);
+}
+.sap-timeline-header { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; margin-bottom: .2rem; }
+.sap-timeline-title    { font-size: .88rem; font-weight: 600; color: var(--p-text); margin: 0; }
+.sap-timeline-subtitle { font-size: .8rem; color: var(--p-muted); }
+.sap-timeline-date {
+  font-size: .72rem; font-weight: 500; padding: .1rem .5rem;
+  border-radius: 3px; background: var(--p-bg);
+  color: var(--p-muted); white-space: nowrap;
+}
+.sap-timeline-item:first-child .sap-timeline-date {
+  background: var(--p-accent-soft); color: var(--p-accent);
+}
+.sap-timeline-tech { display: flex; flex-wrap: wrap; gap: .25rem; margin: .4rem 0 .3rem; }
+.sap-timeline-description { font-size: .84rem; color: var(--p-muted); line-height: 1.6; margin: 0; }
+
+/* ── Object header (CTA) ── */
+.sap-object-header {
+  border-top: 1px solid var(--p-border);
+  padding: 2rem 0 0;
+  margin-top: 2rem;
+}
+.sap-object-title   { font-size: 1.1rem; font-weight: 600; color: var(--p-text); margin: 0 0 .4rem; }
+.sap-object-content { font-size: .88rem; color: var(--p-muted); line-height: 1.6; margin: 0 0 1rem; }
+
+/* ── Buttons ── */
+.sap-btn {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .45rem 1rem; border-radius: var(--p-radius); font-size: .84rem; font-weight: 500;
+  text-decoration: none; transition: border-color .15s;
+  background: var(--p-white); color: var(--p-text);
+  border: 1px solid var(--p-border);
+}
+.sap-btn:hover { border-color: var(--p-muted); text-decoration: none; color: var(--p-text); }
+.sap-btn-emphasized {
+  background: var(--p-accent); color: var(--p-white); border-color: var(--p-accent);
+}
+.sap-btn-emphasized:hover { opacity: .85; color: var(--p-white); }
+
+/* ── Approach items ── */
+.sap-approach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: .75rem;
+}
+.sap-approach-item {
+  display: flex; gap: .7rem; align-items: flex-start;
+  padding: 1rem;
+}
+.sap-approach-icon {
+  width: 32px; height: 32px; border-radius: var(--p-radius); flex-shrink: 0;
+  background: var(--p-accent-soft); color: var(--p-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem;
+}
+.sap-approach-title { font-size: .85rem; font-weight: 600; color: var(--p-text); margin-bottom: .15rem; }
+.sap-approach-desc  { font-size: .84rem; color: var(--p-muted); line-height: 1.6; margin: 0; }
+
+/* ── Service grid ── */
+.sap-service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: .75rem;
+}
+.sap-service-card {
+  padding: 1rem;
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius);
+}
+.sap-service-header {
+  display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem;
+}
+.sap-service-icon {
+  width: 32px; height: 32px; border-radius: var(--p-radius); flex-shrink: 0;
+  background: var(--p-accent-soft); color: var(--p-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem;
+}
+.sap-service-title    { font-size: .85rem; font-weight: 600; color: var(--p-text); margin: 0; }
+.sap-service-subtitle { font-size: .72rem; color: var(--p-muted); margin: 0; }
+.sap-service-body     { font-size: .84rem; color: var(--p-muted); line-height: 1.6; margin: 0; }
+
+/* ── Contact grid ── */
+.sap-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: .75rem;
+}
+.sap-contact-item {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .85rem; border-radius: var(--p-radius);
+  border: 1px solid var(--p-border);
+  text-decoration: none; color: var(--p-text);
+  transition: border-color .15s;
+}
+.sap-contact-item:hover { border-color: var(--p-muted); text-decoration: none; color: var(--p-text); }
+.sap-contact-icon {
+  width: 32px; height: 32px; border-radius: var(--p-radius); flex-shrink: 0;
+  color: var(--p-muted);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem;
+}
+.sap-contact-label { font-size: .72rem; color: var(--p-muted); }
+.sap-contact-value { font-size: .84rem; font-weight: 500; color: var(--p-text); }
+
+/* ── Blog list ── */
+.sap-blog-list {
+  display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;
+}
+.sap-blog-card {
+  padding: 1.25rem;
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius);
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.sap-blog-meta {
+  display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+}
+.sap-blog-date { font-size: .8rem; color: var(--p-muted); }
+.sap-badge-wip {
+  font-size: .7rem; font-weight: 600;
+  padding: .15rem .5rem; border-radius: 3px;
+  background: var(--p-bg); color: var(--p-muted);
+  text-transform: uppercase; letter-spacing: .03em;
+}
+.sap-blog-title {
+  margin: 0; font-size: 1rem; font-weight: 600; color: var(--p-text);
+}
+.sap-blog-excerpt {
+  margin: 0; color: var(--p-muted); font-size: .88rem; line-height: 1.6;
+}
+.sap-blog-card-footer { display: flex; align-items: center; }
+
+/* ── WIP banner (post) ── */
+.wip-banner {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 3rem 1.5rem;
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius); margin: 1rem 0;
+}
+.wip-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--p-muted); }
+.wip-title { font-size: 1.1rem; font-weight: 600; color: var(--p-text); margin: 0 0 .75rem; }
+.wip-body { color: var(--p-muted); font-size: .88rem; line-height: 1.6; max-width: 420px; margin: 0 0 1.5rem; }
+
+/* ── Language switcher ── */
+.lang-switcher {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  display: flex; align-items: center;
+  background: var(--p-white); border: 1px solid var(--p-border);
+  border-radius: 20px; padding: 3px 5px; gap: 2px;
+  font-size: 13px; font-weight: 500;
+}
+.lang-btn {
+  padding: 3px 10px; border-radius: 14px; cursor: pointer;
+  border: none; background: transparent;
+  color: var(--p-muted); font-size: 13px; font-weight: 500;
+  transition: background .15s, color .15s;
+  line-height: 1.5; font-family: inherit;
+}
+.lang-btn.active { background: var(--p-accent); color: var(--p-white); }
+.lang-btn:hover:not(.active) { background: var(--p-bg); color: var(--p-text); }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .sap-feature-grid,
+  .sap-card-container,
+  .sap-skill-grid,
+  .sap-approach-grid,
+  .sap-service-grid,
+  .sap-contact-grid { grid-template-columns: 1fr; }
+  .sap-stats-row { gap: 1.5rem; }
+  .sap-hero-name { font-size: 1.3rem; }
+}
+</style>
+
+<script>
+(function () {
+  var T = {
+    en: {
+      /* ── index page ── */
+      'page.subtitle': 'SAP Developer &bull; Solution Architect &bull; DevOps Specialist',
+      'status.available': 'Available for Projects',
+      'status.location': 'Warsaw, Poland',
+      'status.experience': '20+ Years Experience',
+      'overview.title': 'About Me',
+      'overview.intro': 'Hi there!<br><br>I am a SAP Developer, Solution Architect, and DevOps specialist currently working as a freelancer in Warsaw, Poland. I have been developing applications within the SAP system for over 20 years, bringing deep expertise and innovative solutions to complex business challenges.<br><br>I am passionate about clean code, scalable architecture, and bringing modern software engineering practices to the SAP ecosystem. Whether it is building a CI/CD pipeline from scratch, redesigning a legacy codebase, or mentoring development teams &mdash; I bring the same commitment to quality and pragmatic problem-solving.',
+      'card.sapdev.title': 'SAP Development',
+      'card.sapdev.subtitle': '20+ years of experience',
+      'card.sapdev.text': 'Extensive experience in ABAP, ABAP OO, SAP Fiori, and UI5. From custom reports to complex enhancement frameworks &mdash; delivering robust solutions that stand the test of time.',
+      'card.arch.title': 'Solution Architecture',
+      'card.arch.subtitle': 'Enterprise-grade solutions',
+      'card.arch.text': 'Designing flexible, maintainable, and scalable SAP architectures. Great architecture makes complex systems feel simple.',
+      'card.devops.title': 'SAP DevOps',
+      'card.devops.subtitle': 'Automation &amp; CI/CD',
+      'card.devops.text': 'Bridging traditional SAP and modern DevOps. Automated testing, CI/CD pipelines, and continuous delivery for SAP landscapes.',
+      'stat.years': 'Years in SAP',
+      'stat.projects': 'Projects Delivered',
+      'stat.services': 'Service Areas',
+      'approach.title': 'My Approach',
+      'approach.1.title': 'Architecture First',
+      'approach.1.desc': 'Every solution starts with a solid, flexible architecture designed for maintainability and scale.',
+      'approach.2.title': 'Test-Driven Quality',
+      'approach.2.desc': 'Automated testing is not optional &mdash; it is the foundation of reliable SAP software.',
+      'approach.3.title': 'Continuous Improvement',
+      'approach.3.desc': 'Code review, refactoring, and rebuilding &mdash; always pushing toward cleaner solutions.',
+      'approach.4.title': 'Pragmatic Problem-Solving',
+      'approach.4.desc': 'Balancing technical excellence with real-world constraints to deliver what matters.',
+      'services.title': 'What I Offer',
+      'svc.custom.title': 'SAP Custom Development',
+      'svc.custom.subtitle': 'ABAP &amp; Enhancement',
+      'svc.custom.text': 'Custom ABAP development, enhancement implementations, and complex business logic solutions tailored to your specific requirements.',
+      'svc.integration.title': 'System Integration',
+      'svc.integration.subtitle': 'APIs &amp; Data Migration',
+      'svc.integration.text': 'SAP integration with third-party applications, RESTful API development, OData services, and seamless data migration solutions.',
+      'svc.devops.title': 'DevOps Solutions',
+      'svc.devops.subtitle': 'CI/CD &amp; Automation',
+      'svc.devops.text': 'End-to-end CI/CD pipelines, automated testing frameworks, and modern deployment strategies for SAP environments.',
+      'svc.perf.title': 'Performance Optimization',
+      'svc.perf.subtitle': 'Code Review &amp; Tuning',
+      'svc.perf.text': 'Deep-dive code review, refactoring of legacy ABAP, and performance tuning to make your SAP applications fast and maintainable.',
+      'svc.consult.title': 'Architecture Consulting',
+      'svc.consult.subtitle': 'Solution Design',
+      'svc.consult.text': 'Solution architecture design, technical roadmaps, and hands-on guidance for complex SAP landscapes and modernization initiatives.',
+      'svc.training.title': 'Training &amp; Mentoring',
+      'svc.training.subtitle': 'Knowledge Transfer',
+      'svc.training.text': 'Hands-on workshops, team mentoring, and best practices training for SAP development teams looking to level up their skills.',
+      'contact.title': 'Get In Touch',
+      'contact.intro': 'Interested in working together? I would love to hear about your project. Reach out through any of the channels below.',
+      'contact.linkedin': 'Connect with me',
+      'btn.portfolio': 'View Portfolio',
+      'btn.github': 'GitHub Profile',
+      /* ── portfolio page ── */
+      'portfolio.title': 'Portfolio',
+      'portfolio.subtitle': 'SAP projects, technical expertise, and professional experience',
+      'portfolio.status1': '10+ Enterprise Projects',
+      'portfolio.status2': '20+ Years in SAP',
+      'portfolio.status3': 'Warsaw, Poland',
+      'portfolio.skills.title': 'Technical Skills',
+      'portfolio.projects.title': 'Featured Projects',
+      'skill.sapdev': 'SAP Development',
+      'skill.cloud': 'BTP &amp; Cloud',
+      'skill.devops': 'DevOps &amp; Quality',
+      'skill.integration': 'Integration &amp; APIs',
+      'skill.arch': 'Solution Architecture',
+      'skill.modules': 'SAP Modules',
+      'proj.1.title': 'S/4HANA e-Invoicing &mdash; Poland &amp; Belgium',
+      'proj.1.desc': 'Implemented e-invoicing compliance for DSV covering two countries. Built Adobe Forms invoice forms, AIF mapping and processing pipeline, CPI integration for external tax authority systems, and a tax code &amp; bank account whitelist ensuring full regulatory compliance.',
+      'proj.2.title': 'S/4HANA Sales Rollout &mdash; Philippines',
+      'proj.2.desc': 'Delivered country-specific SAP Sales solutions for the Philippine market: periodic government reporting, electronic invoice, official receipt printouts, and credit note forms &mdash; fully aligned with local regulatory requirements.',
+      'proj.3.title': 'ECB Pension Funds BTP Application',
+      'proj.3.desc': 'Built Fiori apps for the European Central Bank to manage employee pension fund requests, with separate views for employees and HR administrators. Deployed on SAP BTP, connected via Cloud Connector to HCM payroll on S/4HANA.',
+      'proj.4.title': 'SAP Global Trade Services &mdash; Siemens',
+      'proj.4.desc': 'Implemented a central SAP GTS system for global trade compliance at Siemens. Delivered Fiori application extensions, OData service development, and Adobe Forms printing for trade and customs documentation.',
+      'proj.5.title': 'UDK Debitor &mdash; S/4HANA Migration &amp; Security',
+      'proj.5.desc': 'Led migration of SAPUI5 alimony and childcare payment application to S/4HANA, adapted Fiori apps to updated JS libraries, and resolved critical security vulnerabilities discovered through penetration testing. SAP PSCD.',
+      'proj.6.title': 'S/4HANA Financial Data API &mdash; HILTI',
+      'proj.6.desc': 'Built a financial reporting automation layer using CDS and OData to expose S/4HANA financial statement data to MS Power Automate, enabling fully automated reporting workflows without manual data extraction.',
+      'exp.title': 'Professional Experience',
+      'exp.1.title': 'Senior SAP Developer',
+      'exp.1.date': 'Jan 2025 &ndash; Present',
+      'exp.1.subtitle': 'DSV &bull; Warsaw, Poland',
+      'exp.1.desc': 'S/4HANA upgrade support, Sales rollout for the Philippine market, e-invoicing solutions for Poland and Belgium, and a CAP-based account statement application (Fiori, CDS, BRF+, PPF, email &amp; Excel output).',
+      'exp.2.title': 'Senior SAP Developer <span style="font-weight:400;color:var(--p-muted);">(Contract)</span>',
+      'exp.2.date': 'Sep 2022 &ndash; Jan 2025',
+      'exp.2.subtitle': 'ECB &bull; Siemens &bull; HILTI &bull; Remote',
+      'exp.2.desc': 'Three consecutive international engagements: <strong>ECB Frankfurt</strong> &mdash; BTP-hosted Fiori apps for HCM pension funds and teleworking; <strong>Siemens Munich</strong> &mdash; SAP Global Trade Services (GTS) implementation; <strong>HILTI Luxembourg</strong> &mdash; S/4HANA financial data OData API feeding MS Power Automate.',
+      'exp.3.title': 'SAP Developer',
+      'exp.3.date': 'Nov 2015 &ndash; Aug 2022',
+      'exp.3.subtitle': 'KMD Poland &bull; Warsaw / Copenhagen, Denmark',
+      'exp.3.desc': 'Seven years building SAP solutions for Danish public-sector clients. Key projects: SAPUI5 alimony &amp; childcare payment system (SAP PSCD) including S/4HANA migration and post-penetration-testing security hardening; SAP ISU for Hofor utility; SAP ILM information lifecycle management for a Danish payroll cloud.',
+      'exp.4.title': 'SAP Solution Architect',
+      'exp.4.date': 'Jan 2015 &ndash; Dec 2015',
+      'exp.4.subtitle': 'Polish Airlines LOT &bull; Warsaw, Poland',
+      'exp.4.desc': 'Led SAP architecture for LOT Polish Airlines: SRM/SCM, airline-specific solutions, CAMO integration, SuccessFactors, and Fiori rollouts. Defined implementation scope, created architecture documentation, and established system-wide standards in collaboration with Directors.',
+      'exp.5.title': 'SAP Developer / SAP BW Developer',
+      'exp.5.date': 'May 2012 &ndash; Dec 2014',
+      'exp.5.subtitle': 'ATOS &bull; Warsaw, Poland',
+      'exp.5.desc': 'Delivered major SAP engagements: SAP IS-U implementation for GSG Polish gas distributor (client management &amp; market deregulation), SAP HCM system upgrade for Siemens (HR 4.7 &rarr; ECC6.0 EHP7), and SAP IS-U upgrade projects.',
+      'exp.6.title': 'SAP Developer',
+      'exp.6.date': '2004 &ndash; 2012',
+      'exp.6.subtitle': 'T-Mobile &bull; RWE &bull; Neoris / Cemex &bull; PGNiG &bull; Computerland',
+      'exp.6.desc': 'Built a broad SAP foundation across diverse industries: SAP REFX real estate at T-Mobile (Central Europe), SAP IS-U &amp; BW analytics at RWE Poland, worldwide Cemex SAP implementation via Neoris (Warsaw &amp; Mexico City), SAP Enterprise Portal at PGNiG. Began career as Junior Developer at Computerland.',
+      'comp.title': 'Core Competencies',
+      'comp.1.title': 'Architecture Design',
+      'comp.1.subtitle': 'Flexible &amp; Maintainable',
+      'comp.1.text': 'Designing flexible architecture that is easy to maintain and scale, ensuring long-term sustainability of SAP solutions. Every system I design prioritizes clarity, adaptability, and alignment with business goals.',
+      'comp.2.title': 'Code Quality',
+      'comp.2.subtitle': 'Review &amp; Refactoring',
+      'comp.2.text': 'Performing thorough code reviews, refactoring legacy codebases, and rebuilding existing solutions. Clean code isn\'t a luxury &mdash; it\'s a business necessity that pays dividends over time.',
+      'comp.3.title': 'Automation',
+      'comp.3.subtitle': 'Efficiency &amp; Productivity',
+      'comp.3.text': 'Creating automation solutions to reduce manual work, minimize errors, and accelerate delivery. From testing to deployment &mdash; if it can be automated, it should be.',
+      'comp.4.title': 'Pragmatic Solutions',
+      'comp.4.subtitle': 'Practical &amp; Effective',
+      'comp.4.text': 'Balancing technical excellence with real-world constraints. The best solution isn\'t always the most complex one &mdash; it\'s the one that solves the problem reliably and can be maintained by the team.',
+      'cta.title': 'Interested in working together?',
+      'cta.text': 'I\'m available for SAP development, architecture consulting, and DevOps projects.<br>Let\'s build something great.',
+      'btn.home': 'Back to Home',
+      /* ── blog page ── */
+      'blog.subtitle': 'Thoughts, insights, and updates from the SAP world',
+      'blog.posts.title': 'Latest Posts',
+      'blog.under-construction': 'Under Construction',
+      'blog.read-more': 'Read More',
+      'blog.no-posts': 'No posts yet &mdash; check back soon.',
+      'post.wip.badge': 'Under Construction',
+      'post.wip.heading': 'This post is coming soon',
+      'post.wip.body': 'I\'m currently working on this article. Check back soon &mdash; it\'s almost ready.',
+      'post.wip.back': 'Back to Blog'
+    },
+    pl: {
+      /* ── index page ── */
+      'page.subtitle': 'Deweloper SAP &bull; Architekt Rozwiązań &bull; Specjalista DevOps',
+      'status.available': 'Dostępny dla Projektów',
+      'status.location': 'Warszawa, Polska',
+      'status.experience': 'Ponad 20 Lat Doświadczenia',
+      'overview.title': 'O mnie',
+      'overview.intro': 'Cześć!<br><br>Jestem deweloperem SAP, architektem rozwiązań i specjalistą DevOps, aktualnie pracującym jako freelancer w Warszawie. Przez ponad 20 lat rozwijam aplikacje w systemach SAP, wnosząc głęboką wiedzę ekspercką i innowacyjne rozwiązania do złożonych wyzwań biznesowych.<br><br>Jestem pasjonatem czystego kodu, skalowalnej architektury i przenoszenia nowoczesnych praktyk inżynierii oprogramowania do ekosystemu SAP. Niezależnie czy chodzi o budowę pipeline\'u CI/CD od zera, przeprojektowanie starszej bazy kodu, czy mentoring zespołów &mdash; zawsze angażuję się z tym samym nastawieniem na jakość i pragmatyczne rozwiązywanie problemów.',
+      'card.sapdev.title': 'Rozwój SAP',
+      'card.sapdev.subtitle': 'Ponad 20 lat doświadczenia',
+      'card.sapdev.text': 'Rozległe doświadczenie w ABAP, ABAP OO, SAP Fiori i UI5. Od niestandardowych raportów po złożone frameworki rozszerzeń &mdash; dostarczanie solidnych rozwiązań, które przetrwają próbę czasu.',
+      'card.arch.title': 'Architektura Rozwiązań',
+      'card.arch.subtitle': 'Rozwiązania klasy enterprise',
+      'card.arch.text': 'Projektowanie elastycznych, łatwych w utrzymaniu i skalowalnych architektur SAP. Świetna architektura sprawia, że złożone systemy wydają się proste.',
+      'card.devops.title': 'SAP DevOps',
+      'card.devops.subtitle': 'Automatyzacja i CI/CD',
+      'card.devops.text': 'Wypełnianie luki między tradycyjnym SAP a nowoczesnym DevOps. Automatyczne testowanie, pipeline\'y CI/CD i ciągłe dostarczanie dla środowisk SAP.',
+      'stat.years': 'Lata w SAP',
+      'stat.projects': 'Zrealizowanych Projektów',
+      'stat.services': 'Obszary Usług',
+      'approach.title': 'Moje Podejście',
+      'approach.1.title': 'Architektura Przede Wszystkim',
+      'approach.1.desc': 'Każde rozwiązanie zaczyna się od solidnej, elastycznej architektury zaprojektowanej z myślą o łatwości utrzymania i skali.',
+      'approach.2.title': 'Jakość przez Testy',
+      'approach.2.desc': 'Automatyczne testowanie nie jest opcjonalne &mdash; to fundament niezawodnego oprogramowania SAP.',
+      'approach.3.title': 'Ciągłe Doskonalenie',
+      'approach.3.desc': 'Przegląd kodu, refaktoryzacja i przebudowywanie &mdash; zawsze dążąc do czystszych rozwiązań.',
+      'approach.4.title': 'Pragmatyczne Rozwiązywanie Problemów',
+      'approach.4.desc': 'Balansowanie między doskonałością techniczną a rzeczywistymi ograniczeniami w celu dostarczenia tego, co ważne.',
+      'services.title': 'Moja Oferta',
+      'svc.custom.title': 'Dedykowany Rozwój SAP',
+      'svc.custom.subtitle': 'ABAP i Rozszerzenia',
+      'svc.custom.text': 'Niestandardowy rozwój ABAP, implementacje rozszerzeń i złożone rozwiązania logiki biznesowej dostosowane do konkretnych wymagań.',
+      'svc.integration.title': 'Integracja Systemów',
+      'svc.integration.subtitle': 'API i Migracja Danych',
+      'svc.integration.text': 'Integracja SAP z aplikacjami zewnętrznymi, rozwój RESTful API, usługi OData i bezproblemowe rozwiązania migracji danych.',
+      'svc.devops.title': 'Rozwiązania DevOps',
+      'svc.devops.subtitle': 'CI/CD i Automatyzacja',
+      'svc.devops.text': 'Kompleksowe pipeline\'y CI/CD, frameworki automatycznego testowania i nowoczesne strategie wdrożeniowe dla środowisk SAP.',
+      'svc.perf.title': 'Optymalizacja Wydajności',
+      'svc.perf.subtitle': 'Przegląd Kodu i Dostrajanie',
+      'svc.perf.text': 'Dogłębny przegląd kodu, refaktoryzacja starszego ABAP i dostrajanie wydajności, aby aplikacje SAP były szybkie i łatwe w utrzymaniu.',
+      'svc.consult.title': 'Konsulting Architektoniczny',
+      'svc.consult.subtitle': 'Projektowanie Rozwiązań',
+      'svc.consult.text': 'Projektowanie architektury rozwiązań, mapy drogowe techniczne i praktyczne wskazówki dla złożonych środowisk SAP i inicjatyw modernizacyjnych.',
+      'svc.training.title': 'Szkolenia i Mentoring',
+      'svc.training.subtitle': 'Transfer Wiedzy',
+      'svc.training.text': 'Praktyczne warsztaty, mentoring zespołów i szkolenia z najlepszych praktyk dla zespołów deweloperów SAP, które chcą podnieść swoje umiejętności.',
+      'contact.title': 'Skontaktuj Się',
+      'contact.intro': 'Interesujesz się współpracą? Chętnie posłucham o Twoim projekcie. Skontaktuj się przez jeden z poniższych kanałów.',
+      'contact.linkedin': 'Połącz się ze mną',
+      'btn.portfolio': 'Zobacz Portfolio',
+      'btn.github': 'Profil GitHub',
+      /* ── portfolio page ── */
+      'portfolio.title': 'Portfolio',
+      'portfolio.subtitle': 'Projekty SAP, wiedza techniczna i doświadczenie zawodowe',
+      'portfolio.status1': '10+ Projektów Enterprise',
+      'portfolio.status2': 'Ponad 20 Lat w SAP',
+      'portfolio.status3': 'Warszawa, Polska',
+      'portfolio.skills.title': 'Umiejętności Techniczne',
+      'portfolio.projects.title': 'Polecane Projekty',
+      'skill.sapdev': 'Rozwój SAP',
+      'skill.cloud': 'BTP i Chmura',
+      'skill.devops': 'DevOps i Jakość',
+      'skill.integration': 'Integracja i API',
+      'skill.arch': 'Architektura Rozwiązań',
+      'skill.modules': 'Moduły SAP',
+      'proj.1.title': 'E-fakturowanie S/4HANA &mdash; Polska i Belgia',
+      'proj.1.desc': 'Wdrożenie zgodności z e-fakturowaniem dla DSV obejmujące dwa kraje. Zbudowałem formularze faktur Adobe Forms, pipeline mapowania i przetwarzania AIF, integrację CPI z zewnętrznymi systemami urzędów skarbowych oraz białą listę kodów podatkowych i rachunków bankowych zapewniającą pełną zgodność regulacyjną.',
+      'proj.2.title': 'Wdrożenie Sprzedaży S/4HANA &mdash; Filipiny',
+      'proj.2.desc': 'Dostarczenie rozwiązań sprzedażowych SAP specyficznych dla rynku filipińskiego: okresowe raportowanie rządowe, faktury elektroniczne, wydruki oficjalnych paragonów i formularze not kredytowych &mdash; w pełni zgodne z lokalnymi wymogami regulacyjnymi.',
+      'proj.3.title': 'Aplikacja BTP Funduszy Emerytalnych EBC',
+      'proj.3.desc': 'Zbudowałem aplikacje Fiori dla Europejskiego Banku Centralnego do zarządzania wnioskami o fundusze emerytalne pracowników, z oddzielnymi widokami dla pracowników i administratorów HR. Wdrożone na SAP BTP, połączone przez Cloud Connector z payrollem HCM na S/4HANA.',
+      'proj.4.title': 'SAP Global Trade Services &mdash; Siemens',
+      'proj.4.desc': 'Wdrożenie centralnego systemu SAP GTS do zapewnienia zgodności handlu globalnego w Siemens. Dostarczyłem rozszerzenia aplikacji Fiori, rozwój usług OData i drukowanie Adobe Forms dla dokumentacji handlowej i celnej.',
+      'proj.5.title': 'UDK Debitor &mdash; Migracja S/4HANA i Bezpieczeństwo',
+      'proj.5.desc': 'Kierowałem migracją aplikacji SAPUI5 do obsługi alimentów i zasiłków na dzieci do S/4HANA, dostosowałem aplikacje Fiori do zaktualizowanych bibliotek JS i rozwiązałem krytyczne luki bezpieczeństwa odkryte podczas testów penetracyjnych. SAP PSCD.',
+      'proj.6.title': 'API Danych Finansowych S/4HANA &mdash; HILTI',
+      'proj.6.desc': 'Zbudowałem warstwę automatyzacji raportowania finansowego przy użyciu CDS i OData, udostępniając dane sprawozdań finansowych S/4HANA do MS Power Automate, umożliwiając w pełni zautomatyzowane przepływy raportowania bez ręcznej ekstrakcji danych.',
+      'exp.title': 'Doświadczenie Zawodowe',
+      'exp.1.title': 'Starszy Deweloper SAP',
+      'exp.1.date': 'Sty 2025 &ndash; Obecnie',
+      'exp.1.subtitle': 'DSV &bull; Warszawa, Polska',
+      'exp.1.desc': 'Wsparcie aktualizacji S/4HANA, wdrożenie sprzedaży dla rynku filipińskiego, rozwiązania e-fakturowania dla Polski i Belgii oraz aplikacja wyciągów kont oparta na CAP (Fiori, CDS, BRF+, PPF, wyjście e-mail i Excel).',
+      'exp.2.title': 'Starszy Deweloper SAP <span style="font-weight:400;color:var(--p-muted);">(Kontrakt)</span>',
+      'exp.2.date': 'Wrz 2022 &ndash; Sty 2025',
+      'exp.2.subtitle': 'EBC &bull; Siemens &bull; HILTI &bull; Zdalnie',
+      'exp.2.desc': 'Trzy kolejne międzynarodowe zaangażowania: <strong>EBC Frankfurt</strong> &mdash; aplikacje Fiori na BTP dla funduszy emerytalnych HCM i telepracy; <strong>Siemens Monachium</strong> &mdash; wdrożenie SAP Global Trade Services (GTS); <strong>HILTI Luksemburg</strong> &mdash; API OData danych finansowych S/4HANA zasilające MS Power Automate.',
+      'exp.3.title': 'Deweloper SAP',
+      'exp.3.date': 'Lis 2015 &ndash; Sie 2022',
+      'exp.3.subtitle': 'KMD Poland &bull; Warszawa / Kopenhaga, Dania',
+      'exp.3.desc': 'Siedem lat budowania rozwiązań SAP dla duńskich klientów sektora publicznego. Kluczowe projekty: system alimentów i zasiłków SAPUI5 (SAP PSCD) wraz z migracją S/4HANA i wzmocnieniem bezpieczeństwa po testach penetracyjnych; SAP ISU dla Hofor; zarządzanie cyklem życia informacji SAP ILM dla duńskiej chmury payrollowej.',
+      'exp.4.title': 'Architekt Rozwiązań SAP',
+      'exp.4.date': 'Sty 2015 &ndash; Gru 2015',
+      'exp.4.subtitle': 'Polskie Linie Lotnicze LOT &bull; Warszawa, Polska',
+      'exp.4.desc': 'Kierowałem architekturą SAP dla PLL LOT: SRM/SCM, rozwiązania specyficzne dla linii lotniczych, integracja CAMO, SuccessFactors i wdrożenia Fiori. Definiowanie zakresu wdrożenia, tworzenie dokumentacji architektonicznej i ustanawianie ogólnosystemowych standardów we współpracy z dyrektorami.',
+      'exp.5.title': 'Deweloper SAP / Deweloper SAP BW',
+      'exp.5.date': 'Maj 2012 &ndash; Gru 2014',
+      'exp.5.subtitle': 'ATOS &bull; Warszawa, Polska',
+      'exp.5.desc': 'Realizacja dużych projektów SAP: wdrożenie SAP IS-U dla GSG polskiego dystrybutora gazu (zarządzanie klientami i deregulacja rynku), aktualizacja systemu SAP HCM dla Siemens (HR 4.7 &rarr; ECC6.0 EHP7) oraz projekty aktualizacji SAP IS-U.',
+      'exp.6.title': 'Deweloper SAP',
+      'exp.6.date': '2004 &ndash; 2012',
+      'exp.6.subtitle': 'T-Mobile &bull; RWE &bull; Neoris / Cemex &bull; PGNiG &bull; Computerland',
+      'exp.6.desc': 'Budowanie szerokiego fundamentu SAP w różnych branżach: SAP REFX nieruchomości w T-Mobile (Europa Środkowa), SAP IS-U i analityka BW w RWE Polska, światowe wdrożenie SAP Cemex przez Neoris (Warszawa i Meksyk), SAP Enterprise Portal w PGNiG. Karierę rozpocząłem jako Junior Developer w Computerland.',
+      'comp.title': 'Kluczowe Kompetencje',
+      'comp.1.title': 'Projektowanie Architektury',
+      'comp.1.subtitle': 'Elastyczna i Łatwa w Utrzymaniu',
+      'comp.1.text': 'Projektowanie elastycznej architektury, która jest łatwa w utrzymaniu i skalowaniu, zapewniając długoterminową trwałość rozwiązań SAP. Każdy system, który projektuję, stawia na pierwszym miejscu przejrzystość, adaptowalność i zgodność z celami biznesowymi.',
+      'comp.2.title': 'Jakość Kodu',
+      'comp.2.subtitle': 'Przegląd i Refaktoryzacja',
+      'comp.2.text': 'Przeprowadzanie dokładnych przeglądów kodu, refaktoryzacja starszych baz kodu i przebudowywanie istniejących rozwiązań. Czysty kod to nie luksus &mdash; to biznesowa konieczność, która przynosi dywidendy przez lata.',
+      'comp.3.title': 'Automatyzacja',
+      'comp.3.subtitle': 'Efektywność i Produktywność',
+      'comp.3.text': 'Tworzenie rozwiązań automatyzacji w celu zmniejszenia ręcznej pracy, minimalizowania błędów i przyspieszenia dostaw. Od testowania po wdrożenie &mdash; jeśli można to zautomatyzować, powinno być zautomatyzowane.',
+      'comp.4.title': 'Pragmatyczne Rozwiązania',
+      'comp.4.subtitle': 'Praktyczne i Skuteczne',
+      'comp.4.text': 'Balansowanie między doskonałością techniczną a rzeczywistymi ograniczeniami. Najlepsze rozwiązanie nie zawsze jest najbardziej złożone &mdash; to takie, które niezawodnie rozwiązuje problem i może być utrzymywane przez zespół.',
+      'cta.title': 'Zainteresowany współpracą?',
+      'cta.text': 'Jestem dostępny dla projektów SAP, konsultingu architektonicznego i DevOps.<br>Zbudujmy razem coś świetnego.',
+      'btn.home': 'Powrót do strony głównej',
+      /* ── blog page ── */
+      'blog.subtitle': 'Przemyślenia, spostrzeżenia i aktualności ze świata SAP',
+      'blog.posts.title': 'Najnowsze Wpisy',
+      'blog.under-construction': 'W Budowie',
+      'blog.read-more': 'Czytaj Więcej',
+      'blog.no-posts': 'Brak wpisów &mdash; wróć wkrótce.',
+      'post.wip.badge': 'W Budowie',
+      'post.wip.heading': 'Ten wpis pojawi się wkrótce',
+      'post.wip.body': 'Aktualnie pracuję nad tym artykułem. Wróć wkrótce &mdash; prawie gotowe.',
+      'post.wip.back': 'Powrót do bloga'
+    }
+  };
+
+  var lang = localStorage.getItem('site-lang') ||
+    (navigator.language && navigator.language.startsWith('pl') ? 'pl' : 'en');
+
+  function applyTranslations(l) {
+    lang = l;
+    localStorage.setItem('site-lang', l);
+    document.documentElement.lang = l;
+    var t = T[l];
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === l);
+    });
+  }
+
+  function init() {
+    var sw = document.createElement('div');
+    sw.className = 'lang-switcher';
+    sw.setAttribute('role', 'group');
+    sw.setAttribute('aria-label', 'Language selector');
+    sw.innerHTML =
+      '<button class="lang-btn" data-lang="en" aria-label="English">EN</button>' +
+      '<button class="lang-btn" data-lang="pl" aria-label="Polski">PL</button>';
+    document.body.appendChild(sw);
+    sw.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        applyTranslations(btn.getAttribute('data-lang'));
+      });
+    });
+    applyTranslations(lang);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

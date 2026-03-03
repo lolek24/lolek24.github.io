@@ -1,4 +1,4 @@
-title: Tomasz Dygas - SAP Developer Portfolio
+title: Tomasz Dygas
 description: >-
   SAP Developer, Solution Architect & DevOps Specialist based in Warsaw, Poland.
   Over 15 years of experience in SAP development, architecture, and DevOps.
@@ -14,6 +14,13 @@ kramdown:
 
 permalink: /:title/
 
+# just-the-docs theme settings (minimal style)
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+back_to_top: true
+back_to_top_text: "Back to top"
+
 # Sass
 sass:
   sass_dir: _sass
@@ -25,12 +32,21 @@ defaults:
       path: ""
     values:
       layout: "default"
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: "default"
+      nav_exclude: true
 
 # Exclude from build
 exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - CLAUDE.md
+  - .gitignore
+  - "Dream Candidate Resume - Tomasz Dygas EN (1).pdf"
 
 plugins:
   - jekyll-feed
@@ -38,4 +54,4 @@ plugins:
   - jekyll-remote-theme
   - jekyll-sitemap
 
-remote_theme: just-the-docs/just-the-docs-template
+remote_theme: just-the-docs/just-the-docs
